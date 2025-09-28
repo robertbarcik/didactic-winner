@@ -192,6 +192,44 @@ a:focus {
   color: var(--color-text-muted);
 }
 
+.glossary-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.glossary-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(21, 36, 64, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glossary-card:hover,
+.glossary-card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(21, 36, 64, 0.12);
+}
+
+.glossary-card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+.glossary-card strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+}
+
 .site-footer {
   background: var(--color-text);
   color: #ffffff;
