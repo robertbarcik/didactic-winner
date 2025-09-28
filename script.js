@@ -71,3 +71,46 @@ form.addEventListener('submit', (event) => {
   previewEmpty.hidden = true;
   previewContent.hidden = false;
 });
+
+// Prompt idea generator
+const subjects = [
+  'a robot philosopher',
+  'a city on Mars',
+  'an eco-conscious classroom',
+  'a time-traveling historian',
+  'a community of sentient coral reefs',
+  'a collaborative AI art studio'
+];
+
+const styles = [
+  'in the style of a comic book',
+  'as a photorealistic 4K photo',
+  'as a documentary narration',
+  'written like an inspiring manifesto',
+  'as a whimsical children\'s story',
+  'as a set of interactive workshop steps'
+];
+
+const compositions = [
+  'at sunset',
+  'during a lunar eclipse',
+  'in a minimalist setting',
+  'inside a bustling makerspace',
+  'under the ocean surface',
+  'during a festival of lights'
+];
+
+const ideaButton = document.getElementById('generate-idea');
+const ideaOutput = document.getElementById('prompt-idea-output');
+
+if (ideaButton && ideaOutput) {
+  const getRandomItem = (array) => array[Math.floor(Math.random() * array.length)];
+
+  ideaButton.addEventListener('click', () => {
+    const subject = getRandomItem(subjects);
+    const style = getRandomItem(styles);
+    const composition = getRandomItem(compositions);
+
+    ideaOutput.textContent = `Create a prompt about ${subject} ${style} ${composition}.`;
+  });
+}
