@@ -14,6 +14,8 @@ for (const button of toggleButtons) {
     const targetId = button.dataset.target;
     const details = document.getElementById(targetId);
 
+    if (!details) return;
+
     details.classList.toggle('is-open');
 
     // Ensure only one card is open at a time for focused exploration
@@ -28,49 +30,63 @@ for (const button of toggleButtons) {
 }
 
 // Prompt lab slider value update
-const creativitySlider = form.querySelector('input[name="creativity"]');
-creativitySlider.addEventListener('input', (event) => {
-  meterValue.textContent = event.target.value;
-  const value = Number(event.target.value);
-  let descriptor = 'Medium creativity';
+if (form) {
+  const creativitySlider = form.querySelector('input[name="creativity"]');
 
-  if (value < 30) descriptor = 'Low creativity';
-  else if (value > 70) descriptor = 'High creativity';
+  if (creativitySlider && meterValue) {
+    creativitySlider.addEventListener('input', (event) => {
+      meterValue.textContent = event.target.value;
+      const value = Number(event.target.value);
+      let descriptor = 'Medium creativity';
 
-  creativitySlider.setAttribute('aria-valuetext', descriptor);
-});
+      if (value < 30) descriptor = 'Low creativity';
+      else if (value > 70) descriptor = 'High creativity';
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const formData = new FormData(form);
-  const topic = (formData.get('topic') || '').trim();
-  const format = (formData.get('format') || '').trim();
-  const creativity = formData.get('creativity');
-
-  if (!topic) {
-    previewContent.hidden = true;
-    previewEmpty.hidden = false;
-    previewEmpty.textContent = 'Please add a topic to build your prompt.';
-    return;
+      creativitySlider.setAttribute('aria-valuetext', descriptor);
+    });
   }
 
-  const creativityNumber = Number(creativity);
-  let creativityDescription = 'balanced and focused';
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const topic = (formData.get('topic') || '').trim();
+    const format = (formData.get('format') || '').trim();
+    const creativity = formData.get('creativity');
 
-  if (creativityNumber < 30) {
-    creativityDescription = 'precise and analytical';
-  } else if (creativityNumber > 70) {
-    creativityDescription = 'imaginative and exploratory';
-  }
+    if (!topic) {
+      if (previewContent) previewContent.hidden = true;
+      if (previewEmpty) {
+        previewEmpty.hidden = false;
+        previewEmpty.textContent = 'Please add a topic to build your prompt.';
+      }
+      return;
+    }
 
-  previewTopic.textContent = topic;
-  previewFormat.textContent = format || 'Let the model choose an appropriate structure.';
-  previewCreativity.textContent = `${creativityNumber} / 100 (${creativityDescription})`;
-  previewPrompt.textContent = `You are a generative AI assistant. Use a ${creativityDescription} tone to respond about "${topic}" and present the results in ${format || 'the most engaging format for the learner'}.`;
+    const creativityNumber = Number(creativity);
+    let creativityDescription = 'balanced and focused';
 
-  previewEmpty.hidden = true;
-  previewContent.hidden = false;
-});
+    if (creativityNumber < 30) {
+      creativityDescription = 'precise and analytical';
+    } else if (creativityNumber > 70) {
+      creativityDescription = 'imaginative and exploratory';
+    }
+
+    if (previewTopic) previewTopic.textContent = topic;
+    if (previewFormat)
+      previewFormat.textContent =
+        format || 'Let the model choose an appropriate structure.';
+    if (previewCreativity)
+      previewCreativity.textContent = `${creativityNumber} / 100 (${creativityDescription})`;
+    if (previewPrompt)
+      previewPrompt.textContent =
+        `You are a generative AI assistant. Use a ${creativityDescription} tone to respond about "${topic}" and present the results in ${
+          format || 'the most engaging format for the learner'
+        }.`;
+
+    if (previewEmpty) previewEmpty.hidden = true;
+    if (previewContent) previewContent.hidden = false;
+  });
+}
 
 // Prompt idea generator
 const subjects = [
@@ -87,7 +103,7 @@ const styles = [
   'as a photorealistic 4K photo',
   'as a documentary narration',
   'written like an inspiring manifesto',
-  'as a whimsical children\'s story',
+  "as a whimsical children's story",
   'as a set of interactive workshop steps'
 ];
 
