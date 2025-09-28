@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generative AI Learning Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Generative AI Course Companion</p>
+        <h1 class="hero__title">Welcome to the Generative AI Learning Lab</h1>
+        <p class="hero__subtitle">
+          Explore core concepts, experiment with interactive demos, and build
+          intuition for how modern generative models create new content.
+        </p>
+        <a class="hero__cta" href="#modules">Start Exploring</a>
+      </div>
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__gradient"></div>
+        <div class="hero__spark hero__spark--one"></div>
+        <div class="hero__spark hero__spark--two"></div>
+        <div class="hero__spark hero__spark--three"></div>
+      </div>
+    </header>
+
+    <main>
+      <section id="modules" class="section">
+        <div class="section__header">
+          <h2>Foundational Modules</h2>
+          <p>
+            Each module introduces a key building block of generative AI. Click a
+            topic to reveal a short explanation and suggested follow-up
+            questions for deeper study.
+          </p>
+        </div>
+        <div class="card-grid" role="list">
+          <article class="card" role="listitem">
+            <button class="card__toggle" data-target="concept-1">
+              <h3>Data &amp; Representation</h3>
+              <p>How does information become machine-readable?</p>
+            </button>
+            <div class="card__details" id="concept-1">
+              <p>
+                Generative systems learn patterns from structured training data.
+                The way text, images, or audio are encoded determines what
+                relationships a model can discover.
+              </p>
+              <ul>
+                <li>What is tokenization and why is it necessary?</li>
+                <li>How do embeddings capture semantic meaning?</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <button class="card__toggle" data-target="concept-2">
+              <h3>Model Architectures</h3>
+              <p>What structures enable creativity?</p>
+            </button>
+            <div class="card__details" id="concept-2">
+              <p>
+                Transformers, diffusion models, and GANs each generate content in
+                different ways. Understanding their components helps you
+                evaluate strengths and trade-offs.
+              </p>
+              <ul>
+                <li>What role do attention mechanisms play?</li>
+                <li>How do latent variables influence sampling?</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <button class="card__toggle" data-target="concept-3">
+              <h3>Training &amp; Alignment</h3>
+              <p>How do we teach models to be helpful and safe?</p>
+            </button>
+            <div class="card__details" id="concept-3">
+              <p>
+                Optimization objectives, feedback learning, and safety
+                evaluations steer models toward desirable behavior while limiting
+                harmful outputs.
+              </p>
+              <ul>
+                <li>What is reinforcement learning from human feedback?</li>
+                <li>How do guardrails work in deployed systems?</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section--accent">
+        <div class="section__header">
+          <h2>Prompt Experiment Station</h2>
+          <p>
+            Explore how prompt wording and creativity settings can change model
+            behavior. Adjust the controls and generate a preview prompt outline.
+          </p>
+        </div>
+        <form class="prompt-lab" aria-label="Prompt experiment form">
+          <label class="prompt-lab__field">
+            <span>Topic focus</span>
+            <input
+              type="text"
+              name="topic"
+              placeholder="e.g., Brainstorm AI ethics debate topics"
+              required
+            />
+          </label>
+          <label class="prompt-lab__field">
+            <span>Desired output format</span>
+            <input
+              type="text"
+              name="format"
+              placeholder="e.g., bullet list with short explanations"
+            />
+          </label>
+          <label class="prompt-lab__field">
+            <span>Creativity</span>
+            <input
+              type="range"
+              name="creativity"
+              min="0"
+              max="100"
+              value="50"
+              aria-valuetext="Medium creativity"
+            />
+            <div class="prompt-lab__meter" aria-hidden="true">
+              <span data-meter-value>50</span>
+            </div>
+          </label>
+          <button type="submit" class="prompt-lab__submit">Build Prompt</button>
+        </form>
+        <div class="prompt-preview" aria-live="polite">
+          <h3>Prompt Outline</h3>
+          <p class="prompt-preview__empty">
+            Fill in the form above to generate a structured prompt outline.
+          </p>
+          <div class="prompt-preview__content" hidden>
+            <p><strong>Topic:</strong> <span data-preview-topic></span></p>
+            <p><strong>Format:</strong> <span data-preview-format></span></p>
+            <p><strong>Creativity Level:</strong> <span data-preview-creativity></span></p>
+            <p>
+              Suggested prompt starter:
+              <span data-preview-prompt></span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__header">
+          <h2>What You Will Learn Next</h2>
+          <p>
+            We will keep expanding this lab with more guided activities,
+            datasets, and evaluation exercises. Here is a preview of what is
+            coming soon.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="timeline__item">
+            <div class="timeline__badge">1</div>
+            <div class="timeline__content">
+              <h3>Hands-on Notebook Labs</h3>
+              <p>
+                Work through interactive coding notebooks that train and analyze
+                small generative models using open datasets.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__badge">2</div>
+            <div class="timeline__content">
+              <h3>Evaluation Challenges</h3>
+              <p>
+                Compare model outputs, critique prompt engineering strategies,
+                and reflect on ethical considerations in guided case studies.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__badge">3</div>
+            <div class="timeline__content">
+              <h3>Community Project Gallery</h3>
+              <p>
+                Showcase course projects, share reproducible experiments, and
+                get feedback from peers and mentors.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Built for the Generative AI learning community. Stay tuned as we add
+        more experiments and resources.
+      </p>
+      <p class="footer__note">Version 0.1 &mdash; Foundations Preview</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
